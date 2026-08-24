@@ -1,0 +1,13 @@
+dist/
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+output/
+.playwright-cli/
+
+# Arquivos maiores usados apenas durante a comparação de runtimes/modelos.
+models/onnx-community/whisper-tiny/onnx/encoder_model_uint8.onnx
+models/onnx-community/whisper-tiny/onnx/decoder_model_merged_uint8.onnx
+vendor/ort-wasm-simd-threaded.asyncify.mjs
+vendor/ort-wasm-simd-threaded.asyncify.wasm

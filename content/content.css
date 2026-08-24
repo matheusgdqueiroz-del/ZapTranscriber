@@ -1,0 +1,138 @@
+.zap-transcriber {
+  box-sizing: border-box;
+  clear: both;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 4px 8px 6px;
+  max-width: min(430px, calc(100vw - 96px));
+  position: relative;
+  width: fit-content;
+  z-index: 2;
+}
+
+.zap-transcriber,
+.zap-transcriber * {
+  box-sizing: border-box;
+}
+
+.zap-transcriber__button,
+.zap-transcriber__copy {
+  align-items: center;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  justify-content: center;
+  transition: background-color 120ms ease, color 120ms ease, opacity 120ms ease;
+}
+
+.zap-transcriber__button {
+  align-self: flex-start;
+  background: rgba(0, 168, 132, 0.12);
+  border-radius: 999px;
+  color: #008069;
+  gap: 6px;
+  min-height: 28px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.zap-transcriber__button:hover {
+  background: rgba(0, 168, 132, 0.2);
+}
+
+.zap-transcriber__button:focus-visible,
+.zap-transcriber__copy:focus-visible {
+  outline: 2px solid #00a884;
+  outline-offset: 2px;
+}
+
+.zap-transcriber__button:disabled {
+  cursor: wait;
+  opacity: 0.78;
+}
+
+.zap-transcriber__button--busy svg {
+  animation: zap-transcriber-pulse 900ms ease-in-out infinite alternate;
+}
+
+.zap-transcriber__panel {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(17, 27, 33, 0.1);
+  border-radius: 9px;
+  box-shadow: 0 1px 2px rgba(11, 20, 26, 0.08);
+  color: #111b21;
+  min-width: 220px;
+  padding: 10px 11px;
+}
+
+.zap-transcriber__panel[hidden] {
+  display: none;
+}
+
+.zap-transcriber__panel--error {
+  border-color: rgba(213, 45, 45, 0.28);
+}
+
+.zap-transcriber__heading {
+  color: #667781;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.zap-transcriber__text {
+  font-size: 13.5px;
+  line-height: 1.45;
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.zap-transcriber__copy {
+  background: transparent;
+  border-radius: 5px;
+  color: #008069;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 8px;
+  padding: 3px 0;
+}
+
+.zap-transcriber__copy:hover {
+  color: #006b58;
+  text-decoration: underline;
+}
+
+html[data-dark] .zap-transcriber__panel,
+body.dark .zap-transcriber__panel {
+  background: rgba(32, 44, 51, 0.96);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #e9edef;
+}
+
+@keyframes zap-transcriber-pulse {
+  from {
+    opacity: 0.45;
+    transform: scaleX(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zap-transcriber__button,
+  .zap-transcriber__copy {
+    transition: none;
+  }
+
+  .zap-transcriber__button--busy svg {
+    animation: none;
+  }
+}

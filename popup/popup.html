@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ZapTranscriber</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="card">
+      <header class="brand">
+        <img src="../icons/icon-48.png" width="42" height="42" alt="" />
+        <div>
+          <h1>ZapTranscriber</h1>
+          <p>Áudios do WhatsApp em texto</p>
+        </div>
+      </header>
+
+      <section class="privacy-card" aria-label="Privacidade">
+        <strong>100% grátis e sem login</strong>
+        <span>A IA roda no seu computador. Nenhum áudio sai do dispositivo.</span>
+      </section>
+
+      <form id="settings-form">
+        <label for="language">Idioma principal</label>
+        <select id="language" name="language">
+          <option value="pt">Português</option>
+          <option value="auto">Detectar automaticamente</option>
+          <option value="en">Inglês</option>
+          <option value="es">Espanhol</option>
+        </select>
+
+        <p class="hint">
+          A primeira transcrição pode demorar um pouco enquanto o modelo local é carregado na memória.
+        </p>
+
+        <button class="save" type="submit">Salvar idioma</button>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </form>
+
+      <footer>
+        <span>Whisper Tiny multilíngue</span>
+        <span>•</span>
+        <span>Processamento local</span>
+      </footer>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
