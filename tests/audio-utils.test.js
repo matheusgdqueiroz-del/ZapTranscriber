@@ -8,6 +8,7 @@ const {
   splitSamples,
   dataUrlToBlob,
 } = require("../lib/audio-utils.js");
+const transcriptCleanup = import("../src/lib/transcript-cleanup.mjs");
 
 test("downmixChannels calcula a média dos canais", () => {
   const mono = downmixChannels([
@@ -52,4 +53,27 @@ test("dataUrlToBlob reconstrói o áudio recebido da página", async () => {
 
   assert.equal(blob.type, "audio/ogg");
   assert.deepEqual(Array.from(new Uint8Array(await blob.arrayBuffer())), [1, 2, 3, 4]);
+});
+
+test("cleanTranscript limita uma palavra repetida em sequência", async () => {
+  const { cleanTranscript } = await transcriptCleanup;
+
+  assert.equal(cleanTranscript("sim sim sim sim sim, pode enviar"), "sim sim pode enviar");
+});
+
+test("cleanTranscript remove loops de frases sem alterar o restante", async () => {
+  const { cleanTranscript } = await transcriptCleanup;
+
+  assert.equal(
+    cleanTranscript(
+      "Obrigado por assistir. Obrigado por assistir. Obrigado por assistir. Até amanhã."
+    ),
+    "Obrigado por assistir. Até amanhã."
+  );
+});
+
+test("cleanTranscript preserva repetições naturais curtas", async () => {
+  const { cleanTranscript } = await transcriptCleanup;
+
+  assert.equal(cleanTranscript("Não, não precisa repetir."), "Não, não precisa repetir.");
 });

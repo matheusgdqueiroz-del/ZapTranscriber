@@ -10,6 +10,9 @@ $archivePath = Join-Path $distDirectory "ZapTranscriber-v$($manifest.version).zi
 Push-Location $repositoryRoot
 try {
     npm run build
+    if ($LASTEXITCODE -ne 0) {
+        throw "A compilação da extensão falhou com o código $LASTEXITCODE."
+    }
 }
 finally {
     Pop-Location
@@ -42,8 +45,8 @@ foreach ($entry in $packageEntries) {
     Copy-Item -LiteralPath $source -Destination $stagingDirectory -Recurse -Force
 }
 
-$modelSource = Join-Path $repositoryRoot "models\onnx-community\whisper-tiny"
-$modelDestination = Join-Path $stagingDirectory "models\onnx-community\whisper-tiny"
+$modelSource = Join-Path $repositoryRoot "models\onnx-community\whisper-base"
+$modelDestination = Join-Path $stagingDirectory "models\onnx-community\whisper-base"
 $modelOnnxDestination = Join-Path $modelDestination "onnx"
 New-Item -ItemType Directory -Path $modelOnnxDestination -Force | Out-Null
 Get-ChildItem -LiteralPath $modelSource -File |

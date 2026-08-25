@@ -4,9 +4,9 @@ ZapTranscriber - Third-party licenses and notices
 This distribution includes the following third-party components:
 
 - Transformers.js (https://github.com/huggingface/transformers.js), Apache-2.0.
-- Whisper Tiny model (https://huggingface.co/openai/whisper-tiny), Apache-2.0.
-- ONNX conversion from onnx-community/whisper-tiny
-  (https://huggingface.co/onnx-community/whisper-tiny), derived from Whisper Tiny.
+- Whisper Base model (https://huggingface.co/openai/whisper-base), Apache-2.0.
+- ONNX conversion from onnx-community/whisper-base
+  (https://huggingface.co/onnx-community/whisper-base), derived from Whisper Base.
 - ONNX Runtime Web (https://github.com/microsoft/onnxruntime), MIT.
 - WPPConnect WA-JS (https://github.com/wppconnect-team/wa-js), Apache-2.0.
 

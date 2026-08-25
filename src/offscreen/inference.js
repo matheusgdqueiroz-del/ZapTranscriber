@@ -1,6 +1,7 @@
 import { env, pipeline } from "@huggingface/transformers";
+import { cleanTranscript } from "../lib/transcript-cleanup.mjs";
 
-const MODEL_ID = "onnx-community/whisper-tiny";
+const MODEL_ID = "onnx-community/whisper-base";
 const MODEL_DTYPE = "q8";
 const SAMPLE_RATE = 16000;
 const MAX_BASE64_LENGTH = 35_000_000;
@@ -69,6 +70,9 @@ async function transcribeAudio(payload, request) {
       chunk_length_s: 30,
       stride_length_s: 5,
       return_timestamps: false,
+      do_sample: false,
+      max_new_tokens: 192,
+      no_repeat_ngram_size: 6,
     };
 
     if (request.language && request.language !== "auto") {
@@ -80,7 +84,7 @@ async function transcribeAudio(payload, request) {
 
   inferenceQueue = job.catch(() => {});
   const output = await job;
-  const text = output?.text?.trim();
+  const text = cleanTranscript(output?.text);
 
   if (!text) {
     throw new Error("A IA local não identificou fala nesta mensagem.");
