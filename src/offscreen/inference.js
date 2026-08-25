@@ -231,7 +231,7 @@ function normalizeError(error) {
   }
 
   if (/local file|locate file|model|onnx|backend/i.test(message)) {
-    return "Não foi possível carregar o modelo local. Reinstale a extensão a partir do pacote completo.";
+    return "Os arquivos do modelo local estão ausentes ou incompletos. Instale o ZIP ZapTranscriber da página Releases; não use o arquivo automático ‘Source code’.";
   }
 
   return message || "Ocorreu um erro inesperado durante a transcrição local.";

@@ -16,13 +16,17 @@ Extensão para Google Chrome que adiciona um botão **Transcrever** às mensagen
 
 ## Instalação
 
-1. Baixe ou clone este repositório.
-2. Abra `chrome://extensions` no Google Chrome.
-3. Ative o **Modo do desenvolvedor** no canto superior direito.
-4. Clique em **Carregar sem compactação**.
-5. Selecione a pasta raiz do projeto, a mesma que contém `manifest.json`.
-6. Fixe o ZapTranscriber na barra do Chrome.
-7. Abra ou recarregue [WhatsApp Web](https://web.whatsapp.com/).
+1. Abra a página de [Releases](https://github.com/matheusgdqueiroz-del/ZapTranscriber/releases) e baixe o arquivo `ZapTranscriber-vX.Y.Z.zip` da versão mais recente.
+2. Não use os arquivos automáticos **Source code (zip)** ou **Source code (tar.gz)**: eles podem conter apenas ponteiros do Git LFS no lugar do modelo de IA.
+3. Extraia completamente o ZIP baixado.
+4. Abra `chrome://extensions` no Google Chrome.
+5. Ative o **Modo do desenvolvedor** no canto superior direito.
+6. Clique em **Carregar sem compactação**.
+7. Selecione a pasta extraída, a mesma que contém `manifest.json`.
+8. Fixe o ZapTranscriber na barra do Chrome.
+9. Abra ou recarregue [WhatsApp Web](https://web.whatsapp.com/).
+
+Para clonar o código-fonte em vez de usar o pacote da Release, instale o Git LFS antes do `git clone` e confirme que os dois arquivos `.onnx` foram baixados por completo.
 
 ## Como usar
 

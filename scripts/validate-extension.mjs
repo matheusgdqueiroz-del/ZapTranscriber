@@ -1,4 +1,4 @@
-import { access, readFile } from "node:fs/promises";
+import { access, readFile, stat } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
@@ -38,6 +38,11 @@ const referencedFiles = new Set([
   "models/onnx-community/whisper-small/onnx/decoder_model_merged_quantized.onnx",
 ]);
 
+const expectedModelSizes = new Map([
+  ["models/onnx-community/whisper-small/onnx/encoder_model_quantized.onnx", 92_326_160],
+  ["models/onnx-community/whisper-small/onnx/decoder_model_merged_quantized.onnx", 156_750_845],
+]);
+
 for (const entry of manifest.content_scripts || []) {
   for (const file of [...(entry.js || []), ...(entry.css || [])]) {
     referencedFiles.add(file);
@@ -50,7 +55,13 @@ for (const relativeFile of referencedFiles) {
   }
 
   try {
-    await access(path.join(root, relativeFile));
+    const absoluteFile = path.join(root, relativeFile);
+    await access(absoluteFile);
+
+    const expectedSize = expectedModelSizes.get(relativeFile);
+    if (expectedSize && (await stat(absoluteFile)).size !== expectedSize) {
+      errors.push(`Arquivo do modelo local incompleto: ${relativeFile}`);
+    }
   } catch {
     errors.push(`Arquivo referenciado não encontrado: ${relativeFile}`);
   }
