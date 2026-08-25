@@ -33,6 +33,7 @@ $packageEntries = @(
     "icons",
     "lib",
     "offscreen",
+    "page",
     "popup"
 )
 

@@ -12,6 +12,7 @@ Extensão para Google Chrome que adiciona um botão **Transcrever** às mensagen
 - Divisão automática de áudios longos em trechos de até cinco minutos.
 - Idioma principal configurável.
 - Modelo e runtime de IA incluídos no pacote; nenhuma chave de API é necessária.
+- Funciona com mensagens de voz antigas e novas que estejam visíveis na conversa.
 
 ## Instalação
 
@@ -27,11 +28,13 @@ Extensão para Google Chrome que adiciona um botão **Transcrever** às mensagen
 
 Em uma conversa do WhatsApp Web, localize uma mensagem de voz e clique em **Transcrever**. O texto aparecerá logo abaixo do áudio e poderá ser copiado.
 
-Se um áudio ainda não estiver disponível para a extensão, reproduza um instante da mensagem para o WhatsApp carregá-lo e tente novamente.
+Mensagens antigas também podem ser transcritas: role a conversa até o áudio para que ele fique visível e clique em **Transcrever**. Não é necessário reproduzi-lo antes.
 
 ## Gratuito e sem conta
 
 O ZapTranscriber não usa API paga, chave, cadastro ou servidor. O pacote inclui o modelo multilíngue Whisper Tiny em formato ONNX quantizado e executa a IA no próprio Chrome. A primeira transcrição pode demorar um pouco enquanto o navegador carrega cerca de 60 MB de runtime e modelo na memória.
+
+Para acessar o arquivo de uma mensagem no player atual, a extensão inclui o WA-JS e o executa localmente dentro da sessão do WhatsApp Web já aberta. Isso não conecta nenhuma conta adicional e não envia o áudio para o WPPConnect.
 
 ## Privacidade
 
@@ -69,6 +72,7 @@ icons/        ícones da extensão
 lib/          conversão e divisão do áudio
 models/       Whisper Tiny ONNX quantizado
 offscreen/    execução isolada do modelo local
+page/         ponte local para o player atual do WhatsApp Web
 popup/        tela local de configurações
 scripts/      validação, ícones e empacotamento
 src/          código-fonte do serviço e da inferência

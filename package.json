@@ -1,12 +1,12 @@
 {
   "name": "zap-transcriber",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Extensão Chrome para transcrever mensagens de voz do WhatsApp Web.",
   "scripts": {
     "build": "node scripts/build-extension.mjs",
     "test": "node --test tests/*.test.js",
-    "validate": "node scripts/validate-extension.mjs && node --check src/background/service-worker.js && node --check src/offscreen/inference.js && node --check content/content.js && node --check popup/popup.js && node --check lib/audio-utils.js",
+    "validate": "node scripts/validate-extension.mjs && node --check src/background/service-worker.js && node --check src/offscreen/inference.js && node --check src/page/bridge.js && node --check content/content.js && node --check popup/popup.js && node --check lib/audio-utils.js",
     "check": "npm run build && npm run test && npm run validate"
   },
   "engines": {
@@ -15,6 +15,7 @@
   "license": "MIT",
   "devDependencies": {
     "@huggingface/transformers": "3.8.1",
+    "@wppconnect/wa-js": "4.6.0",
     "esbuild": "0.28.2"
   }
 }

@@ -8,6 +8,7 @@ This distribution includes the following third-party components:
 - ONNX conversion from onnx-community/whisper-tiny
   (https://huggingface.co/onnx-community/whisper-tiny), derived from Whisper Tiny.
 - ONNX Runtime Web (https://github.com/microsoft/onnxruntime), MIT.
+- WPPConnect WA-JS (https://github.com/wppconnect-team/wa-js), Apache-2.0.
 
 The ZapTranscriber project itself is licensed separately under the MIT license
 found in LICENSE.

@@ -6,6 +6,7 @@ const {
   resampleLinear,
   encodePcm16Wav,
   splitSamples,
+  dataUrlToBlob,
 } = require("../lib/audio-utils.js");
 
 test("downmixChannels calcula a média dos canais", () => {
@@ -44,4 +45,11 @@ test("splitSamples preserva todas as amostras em múltiplos trechos", () => {
   const chunks = splitSamples(new Float32Array([1, 2, 3, 4, 5]), 2);
 
   assert.deepEqual(chunks.map((chunk) => Array.from(chunk)), [[1, 2], [3, 4], [5]]);
+});
+
+test("dataUrlToBlob reconstrói o áudio recebido da página", async () => {
+  const blob = dataUrlToBlob("data:audio/ogg;base64,AQIDBA==");
+
+  assert.equal(blob.type, "audio/ogg");
+  assert.deepEqual(Array.from(new Uint8Array(await blob.arrayBuffer())), [1, 2, 3, 4]);
 });

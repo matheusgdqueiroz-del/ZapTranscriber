@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ZapTranscriber",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minimum_chrome_version": "120",
   "description": "Transcreva mensagens de voz do WhatsApp Web com um clique.",
   "permissions": [
@@ -32,6 +32,17 @@
     "128": "icons/icon-128.png"
   },
   "content_scripts": [
+    {
+      "matches": [
+        "https://web.whatsapp.com/*"
+      ],
+      "js": [
+        "page/wppconnect-wa.js",
+        "page/bridge.js"
+      ],
+      "run_at": "document_idle",
+      "world": "MAIN"
+    },
     {
       "matches": [
         "https://web.whatsapp.com/*"
