@@ -33,9 +33,9 @@ const referencedFiles = new Set([
   ...Object.values(manifest.action?.default_icon || {}),
   "vendor/ort-wasm-simd-threaded.mjs",
   "vendor/ort-wasm-simd-threaded.wasm",
-  "models/onnx-community/whisper-base/config.json",
-  "models/onnx-community/whisper-base/onnx/encoder_model_quantized.onnx",
-  "models/onnx-community/whisper-base/onnx/decoder_model_merged_quantized.onnx",
+  "models/onnx-community/whisper-small/config.json",
+  "models/onnx-community/whisper-small/onnx/encoder_model_quantized.onnx",
+  "models/onnx-community/whisper-small/onnx/decoder_model_merged_quantized.onnx",
 ]);
 
 for (const entry of manifest.content_scripts || []) {

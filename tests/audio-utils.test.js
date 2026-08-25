@@ -7,6 +7,7 @@ const {
   encodePcm16Wav,
   splitSamples,
   dataUrlToBlob,
+  createDecodingContext,
 } = require("../lib/audio-utils.js");
 const transcriptCleanup = import("../src/lib/transcript-cleanup.mjs");
 
@@ -53,6 +54,18 @@ test("dataUrlToBlob reconstrói o áudio recebido da página", async () => {
 
   assert.equal(blob.type, "audio/ogg");
   assert.deepEqual(Array.from(new Uint8Array(await blob.arrayBuffer())), [1, 2, 3, 4]);
+});
+
+test("createDecodingContext solicita decodificação diretamente em 16 kHz", () => {
+  class FakeAudioContext {
+    constructor(options) {
+      this.options = options;
+    }
+  }
+
+  const context = createDecodingContext(FakeAudioContext, 16000);
+
+  assert.deepEqual(context.options, { sampleRate: 16000 });
 });
 
 test("cleanTranscript limita uma palavra repetida em sequência", async () => {

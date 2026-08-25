@@ -1,9 +1,9 @@
 $ErrorActionPreference = "Stop"
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
-$modelDirectory = Join-Path $repositoryRoot "models\onnx-community\whisper-base"
-$revision = "0dc963c325ab2554e6dcedbb458decbffb4dc5b1"
-$baseUrl = "https://huggingface.co/onnx-community/whisper-base/resolve/$revision"
+$modelDirectory = Join-Path $repositoryRoot "models\onnx-community\whisper-small"
+$revision = "36050c46d777d46dc4b5f43f6d90574fc38f8732"
+$baseUrl = "https://huggingface.co/onnx-community/whisper-small/resolve/$revision"
 
 $files = @(
     "added_tokens.json",
@@ -22,8 +22,8 @@ $files = @(
 )
 
 $expectedHashes = @{
-    "onnx/encoder_model_quantized.onnx" = "5862993336bf33acd23736071aae2b32261d3b1b2f37780194460d4ef974dd46"
-    "onnx/decoder_model_merged_quantized.onnx" = "fa3ef9902734ce5ae6f9ef2bdb2ba9a6c4b5785b09f4f420ce036573dc9d090b"
+    "onnx/encoder_model_quantized.onnx" = "a43a83f3c5361cd591cfa7c36f14b43cf7cb22f47a415cc14a8d557be800fa92"
+    "onnx/decoder_model_merged_quantized.onnx" = "ec07c3cbb64172c39791e26ee870a65ac22b458c36722bfe2776b3dbf741e0c9"
 }
 
 foreach ($relativeFile in $files) {

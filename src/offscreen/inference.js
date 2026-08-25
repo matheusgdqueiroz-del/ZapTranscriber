@@ -1,7 +1,7 @@
 import { env, pipeline } from "@huggingface/transformers";
 import { cleanTranscript } from "../lib/transcript-cleanup.mjs";
 
-const MODEL_ID = "onnx-community/whisper-base";
+const MODEL_ID = "onnx-community/whisper-small";
 const MODEL_DTYPE = "q8";
 const SAMPLE_RATE = 16000;
 const MAX_BASE64_LENGTH = 35_000_000;

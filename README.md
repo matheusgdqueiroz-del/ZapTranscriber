@@ -7,8 +7,8 @@ Extensão para Google Chrome que adiciona um botão **Transcrever** às mensagen
 - Botão de transcrição integrado às mensagens de voz.
 - Resultado exibido junto do áudio, sem sair da conversa.
 - Cópia da transcrição com um clique.
-- Transcrição 100% local com Whisper Base — grátis e sem login.
-- Conversão local do áudio do WhatsApp para WAV mono de 16 kHz.
+- Transcrição 100% local com Whisper Small — grátis e sem login.
+- Decodificação e conversão local do áudio do WhatsApp para WAV mono de 16 kHz.
 - Divisão automática de áudios longos em trechos de até cinco minutos.
 - Idioma principal configurável.
 - Modelo e runtime de IA incluídos no pacote; nenhuma chave de API é necessária.
@@ -32,7 +32,7 @@ Mensagens antigas também podem ser transcritas: role a conversa até o áudio p
 
 ## Gratuito e sem conta
 
-O ZapTranscriber não usa API paga, chave, cadastro ou servidor. O pacote inclui o modelo multilíngue Whisper Base em formato ONNX quantizado e executa a IA no próprio Chrome. Ele é maior e mais preciso que o Tiny usado anteriormente, portanto a primeira transcrição pode demorar um pouco mais enquanto o navegador carrega o modelo na memória.
+O ZapTranscriber não usa API paga, chave, cadastro ou servidor. O pacote inclui o modelo multilíngue Whisper Small em formato ONNX quantizado e executa a IA no próprio Chrome. Ele é consideravelmente mais preciso que os modelos Tiny e Base usados anteriormente, em troca de um pacote maior e alguns segundos adicionais de processamento. A primeira transcrição também pode demorar mais enquanto o navegador carrega o modelo na memória.
 
 Para acessar o arquivo de uma mensagem no player atual, a extensão inclui o WA-JS e o executa localmente dentro da sessão do WhatsApp Web já aberta. Isso não conecta nenhuma conta adicional e não envia o áudio para o WPPConnect.
 
@@ -70,7 +70,7 @@ background/   runtime de transcrição local compilado
 content/      integração visual com o WhatsApp Web
 icons/        ícones da extensão
 lib/          conversão e divisão do áudio
-models/       Whisper Base ONNX quantizado
+models/       Whisper Small ONNX quantizado
 offscreen/    execução isolada do modelo local
 page/         ponte local para o player atual do WhatsApp Web
 popup/        tela local de configurações

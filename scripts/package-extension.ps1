@@ -45,8 +45,8 @@ foreach ($entry in $packageEntries) {
     Copy-Item -LiteralPath $source -Destination $stagingDirectory -Recurse -Force
 }
 
-$modelSource = Join-Path $repositoryRoot "models\onnx-community\whisper-base"
-$modelDestination = Join-Path $stagingDirectory "models\onnx-community\whisper-base"
+$modelSource = Join-Path $repositoryRoot "models\onnx-community\whisper-small"
+$modelDestination = Join-Path $stagingDirectory "models\onnx-community\whisper-small"
 $modelOnnxDestination = Join-Path $modelDestination "onnx"
 New-Item -ItemType Directory -Path $modelOnnxDestination -Force | Out-Null
 Get-ChildItem -LiteralPath $modelSource -File |
