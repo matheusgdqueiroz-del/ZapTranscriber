@@ -24,6 +24,14 @@ if (manifest.host_permissions?.length) {
   errors.push("A extensão local não deve solicitar permissões de hosts externos.");
 }
 
+if (manifest.cross_origin_embedder_policy?.value !== "require-corp") {
+  errors.push("O manifesto precisa habilitar COEP para a inferência WASM paralela.");
+}
+
+if (manifest.cross_origin_opener_policy?.value !== "same-origin") {
+  errors.push("O manifesto precisa habilitar COOP para a inferência WASM paralela.");
+}
+
 const referencedFiles = new Set([
   manifest.background?.service_worker,
   manifest.action?.default_popup,

@@ -10,6 +10,7 @@ const {
   createDecodingContext,
 } = require("../lib/audio-utils.js");
 const transcriptCleanup = import("../src/lib/transcript-cleanup.mjs");
+const runtimeConfig = import("../src/lib/runtime-config.mjs");
 
 test("downmixChannels calcula a média dos canais", () => {
   const mono = downmixChannels([
@@ -66,6 +67,20 @@ test("createDecodingContext solicita decodificação diretamente em 16 kHz", () 
   const context = createDecodingContext(FakeAudioContext, 16000);
 
   assert.deepEqual(context.options, { sampleRate: 16000 });
+});
+
+test("selectWasmThreadCount usa múltiplos núcleos sem saturar o processador", async () => {
+  const { selectWasmThreadCount } = await runtimeConfig;
+
+  assert.equal(selectWasmThreadCount(true, 12), 4);
+  assert.equal(selectWasmThreadCount(true, 4), 2);
+  assert.equal(selectWasmThreadCount(true, 2), 1);
+});
+
+test("selectWasmThreadCount mantém compatibilidade sem isolamento", async () => {
+  const { selectWasmThreadCount } = await runtimeConfig;
+
+  assert.equal(selectWasmThreadCount(false, 12), 1);
 });
 
 test("cleanTranscript limita uma palavra repetida em sequência", async () => {

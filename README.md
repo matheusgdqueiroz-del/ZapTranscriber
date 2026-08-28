@@ -8,6 +8,7 @@ Extensão para Google Chrome que adiciona um botão **Transcrever** às mensagen
 - Resultado exibido junto do áudio, sem sair da conversa.
 - Cópia da transcrição com um clique.
 - Transcrição 100% local com Whisper Small — grátis e sem login.
+- Inferência WASM paralela, usando até quatro threads conforme o processador.
 - Decodificação e conversão local do áudio do WhatsApp para WAV mono de 16 kHz.
 - Divisão automática de áudios longos em trechos de até cinco minutos.
 - Idioma principal configurável.

@@ -1,4 +1,5 @@
 import { env, pipeline } from "@huggingface/transformers";
+import { selectWasmThreadCount } from "../lib/runtime-config.mjs";
 import { cleanTranscript } from "../lib/transcript-cleanup.mjs";
 
 const MODEL_ID = "onnx-community/whisper-small";
@@ -10,7 +11,10 @@ env.allowLocalModels = true;
 env.allowRemoteModels = false;
 env.localModelPath = chrome.runtime.getURL("models/");
 env.useBrowserCache = false;
-env.backends.onnx.wasm.numThreads = 1;
+env.backends.onnx.wasm.numThreads = selectWasmThreadCount(
+  globalThis.crossOriginIsolated === true,
+  globalThis.navigator?.hardwareConcurrency
+);
 env.backends.onnx.wasm.proxy = false;
 env.backends.onnx.wasm.wasmPaths = {
   mjs: chrome.runtime.getURL("vendor/ort-wasm-simd-threaded.mjs"),
